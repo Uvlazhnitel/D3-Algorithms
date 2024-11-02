@@ -1,0 +1,41 @@
+class Date:
+    def __init__(self, year, month, day):
+        """Constructor to initialize the date"""
+        self.year = year
+        self.month = month
+        self.day = day
+
+    def __del__(self):
+        """Destructor to notify when a Date object is destroyed"""
+        print("Date object destroyed")
+
+    def change(self, year, month, day):
+        """Method to change the date"""
+        self.year = year
+        self.month = month
+        self.day = day
+
+    def tomorrow(self):
+        """Method to calculate and print the next day"""
+        self.day += 1
+        # Simplified logic for month and year change
+        if self.day > 30:
+            self.day = 1
+            self.month += 1
+            if self.month > 12:
+                self.month = 1
+                self.year += 1
+        self.print_date()
+
+    def print_date(self):
+        """Method to print the date"""
+        print(f"{self.year}-{self.month:02d}-{self.day:02d}")
+
+# Demonstration
+if __name__ == "__main__":
+    today = Date(2024, 1, 5)
+    today.print_date()
+    today.tomorrow()  # Print the next day
+
+    today.change(2023, 12, 31)
+    today.tomorrow()  # Test year change
